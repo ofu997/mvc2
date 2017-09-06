@@ -19,6 +19,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @* dynamically creates hyper-links, considers MVC core pieces. 
+                    Html. includes many helper methods 
+                    "Index" make hyperlink and calls Index Actionresult
+                    *@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
