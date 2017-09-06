@@ -10,6 +10,7 @@ namespace HelloMVC.Controllers
     public class HomeController : Controller
     {
 		// did anything change today? 09/05/17
+		// processes requests for data, which template to use, redirects
         // GET: Home
         public ActionResult Index()
         {	
