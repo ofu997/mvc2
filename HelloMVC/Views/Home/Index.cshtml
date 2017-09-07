@@ -10,13 +10,84 @@ model is looking for this list, so it's bound
 
 @{
     ViewBag.Title = "Index";
+    var value = 1000;
 }
+
+@*  @variable similar to System.WriteLine    *@
 
 <h2> @ViewBag.OliverCreatedThisValue </h2>
 <h2> testing </h2>
 <p> ~!* </p>
 
+@*mixed expressions*@
+@{ 
+    var name = "Me";
+    var day = DateTime.Now.DayOfWeek.ToString();
+    <p>Hi @name, today is @day. @(day)s are one of 7 
+    days of the week  </p>
+
+    var id = 123;
+    <p>the ID is PB@(id)</p>
+
+    @helper pluralizeChildren(int childCount) { 
+        @(childCount == 1 ? "child" : "children");
+    }
+
+    @*once inside a code block we don't need another code block*@
+        var childCount = 2;
+        <p>I have @childCount @pluralizeChildren(@childCount)</p>
+
+
+}
+
+@*span tags necessary here!!*@
+<p>
+    Mr. President, there
+    @if (childCount == 1)
+    {
+        <span>is one child</span>
+    }
+    else
+    {
+        <span>are @childCount children</span>
+    }
+    you should deal with...
+</p>
+
+@* :display this instead of <p>display this</p>*@
+<p>
+    @{ 
+        var test = false;
+        if (!test)
+        {
+            @:Display This
+            <span>something 
+             to
+             display</span>
+        }
+    }
+</p>
+
+@{ 
+    @*
+        we can create and later access variables in a code block 
+    *@
+    value = value + 1; 
+}
+
+@*mixed expressions can handle loops too!*@
 @foreach (var car in Model)
 {
     <p> @car.Id-@car.Make-@car.Model</p>
 }
+
+@*@ needed because loops are in C#*@
+@for (int i=1; i<=10;i++)
+{
+    int j = i * i*i;
+  <span>@j<br /></span>                      
+}
+
+@*escaping*@
+<p>pb@vs.com</p>
+<p>@@myTwitterHandle</p>
